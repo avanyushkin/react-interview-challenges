@@ -1,11 +1,16 @@
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
+import Dashboard from './components/Dashboard'
+import TaskPage from './components/TaskPage'
 
-function App() {
-
+function App () {
   return (
-    <>
-     <h1>Hello, World!</h1>
-    </>
+    <div className = "app"> 
+      <Routes>
+        <Route path = "/" element = {<Dashboard />} />
+        <Route path = "/task/:taskId" element = {<TaskPage />}/>
+      </Routes>  
+    </div>
   )
 }
 
