@@ -1,0 +1,12 @@
+.color-holder {
+  background-color: #f60505;
+  height: 200px;
+}
+
+.correct-answer {
+  color: green;
+}
+
+.wrong-answer {
+  color: red;
+}
