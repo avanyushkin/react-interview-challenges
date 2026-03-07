@@ -1,4 +1,4 @@
-import react, { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 
 const QUOTES_API: string = "https://dummyjson.com/quotes";
@@ -12,6 +12,7 @@ function Solve () {
   const [quotes, setQuotes] = useState<Quote[]> ([]);
   const [loading, setLoading] = useState<boolean> (true);
   const [error, setError] = useState<string | null> (null);
+  const [searchInput, setSearchInput] = useState<string> ("");
   const [searchWord, setSearchWord] = useState<string> ("");
 
   useEffect (() => {
@@ -45,29 +46,41 @@ function Solve () {
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault ();
-    console.log ("search word: ", searchWord);
+    setSearchWord (searchInput); // Устанавливаем searchWord только при submit
+    console.log ("search word: ", searchInput);
   }
+
   return (
     <>
       <form onSubmit = {handleSearch}>
-        <input type = "text" placeholder = "Enter word..." value = {searchWord}
-          onChange = {(e) => setSearchWord (e.target.value)}
+        <input 
+          type = "text" 
+          placeholder = "Enter word..." 
+          value = {searchInput}
+          onChange = {(e) => setSearchInput (e.target.value)}
         />
         <button type = "submit">Search</button>
       </form>
       {
         quotes.map (
           (it) => {
-            const words = it.quote.split (' ');
-            const matchedWords = words.filter (word => word.toLowerCase ().includes (searchWord.toLowerCase ()));
-
-            return (
-              <div key = {it.id}>
-                {matchedWords.length > 0 ? (
-                  <p>{matchedWords.join (' ')}</p>
-                ) : (null)}
-              </div>
-            );
+            if (searchWord.trim () !== "") {
+              if (it.quote.toLowerCase().includes(searchWord.toLowerCase())) {
+                return (
+                  <div key = {it.id}>
+                    <p>{it.quote}</p>
+                  </div>
+                );
+              } else {
+                return null;
+              }
+            } else {
+              return (
+                <div key = {it.id}>
+                  <p>{it.quote}</p>
+                </div>
+              );
+            }
           }
         )
       }
