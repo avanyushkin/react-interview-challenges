@@ -7,7 +7,10 @@ interface TaskComponent {
 const taskComponents: Record<string, TaskComponent> = {
   "01": {
     Solve: lazy (() => import ("../tasks/task-01/Solve")),
-  }
+  },
+  "02": {
+    Solve: lazy (() => import ("../tasks/task-02/Solve")),
+  },
 };
 function TaskPage () {
   const { taskId } = useParams< {taskId: string} > ();
