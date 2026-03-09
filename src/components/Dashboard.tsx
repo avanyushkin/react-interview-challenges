@@ -10,6 +10,10 @@ const tasks: Task[] = [
     id: "01",
     title: "Guessing color",
   },
+  {
+    id: "02",
+    title: "Get all coincidence from API",
+  },
 ];
 function Dashboard () {
   return (
