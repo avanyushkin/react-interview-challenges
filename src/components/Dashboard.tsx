@@ -14,6 +14,10 @@ const tasks: Task[] = [
     id: "02",
     title: "Get all coincidence from API",
   },
+  {
+    id: "03",
+    title: "Circles with state managment",
+  },
 ];
 function Dashboard () {
   return (
