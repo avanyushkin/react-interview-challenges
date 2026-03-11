@@ -7,7 +7,30 @@ interface Circle {
   id: number;
 }
 
+class Stack<T> {
+  private items: T[] = [];
+  push (item: T): void {
+    this.items.push (item);
+  }
+  pop (): T | undefined {
+    return this.items.pop ();
+  }
+  peek (): T | undefined {
+    return this.items[this.items.length - 1];
+  }
+  isEmpty (): boolean {
+    return this.items.length === 0;
+  }
+  size (): number {
+    return this.items.length;
+  }
+}
+
 function Solve () {
+  const [past, setPast] = useState (() => new Stack<Circle[]> ());
+  const [curr, setCurr] = useState<Circle[]> ();
+  const [future, setFuture] = useState (() => new Stack<Circle[]> ());
+
   const [circles, setCircles] = useState<Circle[]> ([]);
   const handleBoardClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect ();
@@ -18,6 +41,7 @@ function Solve () {
     };
     setCircles ([...circles, newCircle]);
   }
+
   return (
     <>
       <div className = "board" onClick = {handleBoardClick}>
