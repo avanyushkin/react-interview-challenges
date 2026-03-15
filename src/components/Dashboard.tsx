@@ -18,6 +18,10 @@ const tasks: Task[] = [
     id: "03",
     title: "Circles with state managment",
   },
+  {
+    id: "04",
+    title: "Guess two same images",
+  }
 ];
 function Dashboard () {
   return (
