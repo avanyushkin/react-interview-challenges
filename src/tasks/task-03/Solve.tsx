@@ -24,12 +24,16 @@ class Stack<T> {
   size (): number {
     return this.items.length;
   }
+  clone (): Stack<T> {
+    const newStack = new Stack<T> ();
+    newStack.items = [...this.items];
+    return newStack;
+  } 
 }
 
 function Solve () {
   const [past, setPast] = useState (() => new Stack<Circle[]> ());
-  const [curr, setCurr] = useState<Circle[]> ();
-  const [newCurr, setNewCurr] = useState<Circle[]> ();
+  const [curr, setCurr] = useState<Circle[]> ([]);
   const [future, setFuture] = useState (() => new Stack<Circle[]> ());
 
   // const [circles, setCircles] = useState<Circle[]> ([]);
@@ -42,50 +46,32 @@ function Solve () {
     };
     // setCircles ([...circles, newCircle]);
 
-    const newPast = new Stack<Circle[]>;
-    while (!past.isEmpty ()) {
-      newPast.push (past.pop ()!);
-    }
-    newPast.push (curr || []);
+    const newPast = past.clone ();
+    newPast.push ([...curr]);
     setPast (newPast);
-    const newFuture = new Stack<Circle[]>;
-    setFuture (newFuture);
-    setCurr ([...(curr || []), newCircle]);
+    setCurr ([...curr, newCircle]);
+    setFuture (new Stack<Circle[]> ());
   }
 
   const handleBack = () => {
     if (past.size () > 0 && curr !== undefined) {
-        const newFuture = new Stack<Circle[]>();
-        while (!future.isEmpty()) {
-          newFuture.push(future.pop()!);
-        }
-        newFuture.push(curr);
-        const previousState = past.pop()!;
-        const newPast = new Stack<Circle[]>();
-        while (!past.isEmpty()) {
-          newPast.push(past.pop()!);
-        }
-        setFuture(newFuture);
-        setPast(newPast);
-        setCurr(previousState);
+        const newFuture = future.clone ();
+        newFuture.push ([...curr]);
+        const prevState = past.pop ()!;
+        setFuture (newFuture);
+        setPast (past);
+        setCurr (prevState);
     }
   }
 
   const handleForward = () => {
     if (future.size() > 0 && curr !== undefined) {
-        const newPast = new Stack<Circle[]>();
-        while (!past.isEmpty()) {
-        newPast.push(past.pop()!);
-        }
-        newPast.push(curr);
-        const nextState = future.pop()!;
-        const newFuture = new Stack<Circle[]>();
-        while (!future.isEmpty()) {
-        newFuture.push(future.pop()!);
-        }
-        setPast(newPast);
-        setFuture(newFuture);
-        setCurr(nextState);
+        const newPast = past.clone ();
+        newPast.push ([...curr]);
+        const nextState = future.pop ()!;
+        setPast (newPast);
+        setCurr (nextState);
+        setFuture (future);
     }
   }
 
