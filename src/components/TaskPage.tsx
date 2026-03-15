@@ -11,6 +11,9 @@ const taskComponents: Record<string, TaskComponent> = {
   "02": {
     Solve: lazy (() => import ("../tasks/task-02/Solve")),
   },
+  "03": {
+    Solve: lazy (() => import ("../tasks/task-03/Solve")),
+  }
 };
 function TaskPage () {
   const { taskId } = useParams< {taskId: string} > ();
