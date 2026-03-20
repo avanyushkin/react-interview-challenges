@@ -1,0 +1,73 @@
+.images-board {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  gap: 10px;
+  height: 620px;
+  margin: 0 auto;
+}
+
+.image {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #cccccc;
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: all 0.3s ease;
+}
+
+.image.visible img {
+  filter: none;
+  opacity: 1;
+}
+
+.image.hidden img {
+  filter: grayscale(100%) brightness(0.5);
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.image {
+  animation: fadeIn 0.5s scale;
+}
+
+.image img:hover {
+  width: 205px;
+  height: 205px;
+}
+
+.wins-amount {
+  font-size: 20px;
+  color: green;
+}
+.loses-amount {
+    font-size: 20px;
+    color: red;
+}
+
+.image.selected {
+  opacity: 0.6;
+  transform: scale(0.95);
+  transition: all 0.2s ease;
+}
+
+.image.selected img {
+  filter: brightness(0.8);
+}
