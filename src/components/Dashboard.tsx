@@ -21,6 +21,10 @@ const tasks: Task[] = [
   {
     id: "04",
     title: "Guess two same images",
+  },
+  {
+    id: "05",
+    title: "Files tree-structure",
   }
 ];
 function Dashboard () {

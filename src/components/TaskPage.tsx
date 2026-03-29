@@ -16,6 +16,9 @@ const taskComponents: Record<string, TaskComponent> = {
   },
   "04": {
     Solve: lazy (() => import ("../tasks/task-04/Solve")),
+  },
+  "05": {
+    Solve: lazy (() => import ("../tasks/task-05/Solve")),
   }
 };
 function TaskPage () {
