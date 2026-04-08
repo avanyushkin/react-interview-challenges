@@ -1,0 +1,21 @@
+.image-holder img {
+  width: 400px;
+  height: 300px;
+}
+
+.buttons-holder button {
+  width: 80px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid black;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.buttons-holder button:hover {
+  box-shadow: 0 2px 4px rgb(59, 59, 59);
+}
+
+.buttons-holder button:active {
+  box-shadow: 3px 5px 7px black;
+}

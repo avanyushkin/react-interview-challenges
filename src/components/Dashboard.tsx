@@ -25,6 +25,10 @@ const tasks: Task[] = [
   {
     id: "05",
     title: "Files tree-structure",
+  },
+  {
+    id: "06",
+    title: "Image slider",
   }
 ];
 function Dashboard () {
